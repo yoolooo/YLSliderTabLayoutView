@@ -214,9 +214,9 @@
         toLabel.font = [UIFont systemFontOfSize:self.tabItemSelectedFontSize?self.tabItemSelectedFontSize:self.tabItemNormalFontSize];
         [toLabel sizeToFit];
         toLabel.textColor = self.tabItemSelectedColor;
-        
         //选中居中
         UIView *selectedView = [_scrollView viewWithTag:kViewTagBase+selectedIndex];
+        toLabel.center = CGPointMake(CGRectGetWidth(selectedView.bounds)/2.0, CGRectGetHeight(selectedView.bounds)/2.0);
         CGRect rc = selectedView.frame;
         rc = CGRectMake(CGRectGetMinX(rc) - CGRectGetMaxY(_scrollView.bounds),rc.origin.y,CGRectGetWidth(_scrollView.bounds) , CGRectGetHeight(rc));
         [_scrollView scrollRectToVisible:rc animated:YES];

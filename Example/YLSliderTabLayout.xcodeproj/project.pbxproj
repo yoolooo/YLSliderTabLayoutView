@@ -138,8 +138,8 @@
 		2C4F22E4212E994400F89D76 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
-				2C4F22E5212E994400F89D76 /* YLSliderView.m */,
 				2C4F22E6212E994400F89D76 /* YLSliderView.h */,
+				2C4F22E5212E994400F89D76 /* YLSliderView.m */,
 			);
 			path = Slider;
 			sourceTree = "<group>";
@@ -310,6 +310,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = yoolooo;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = ERPKWHP7TA;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -577,6 +580,7 @@
 			baseConfigurationReference = F6CE7C8DE0581DED750989B4 /* Pods-YLSliderTabLayout_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ERPKWHP7TA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLSliderTabLayout/YLSliderTabLayout-Prefix.pch";
 				INFOPLIST_FILE = "YLSliderTabLayout/YLSliderTabLayout-Info.plist";
@@ -592,6 +596,7 @@
 			baseConfigurationReference = 2AF32FB35DD340F6F57165BE /* Pods-YLSliderTabLayout_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ERPKWHP7TA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLSliderTabLayout/YLSliderTabLayout-Prefix.pch";
 				INFOPLIST_FILE = "YLSliderTabLayout/YLSliderTabLayout-Info.plist";
