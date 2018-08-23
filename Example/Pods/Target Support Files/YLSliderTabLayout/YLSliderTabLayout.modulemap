@@ -1,0 +1,6 @@
+framework module YLSliderTabLayout {
+  umbrella header "YLSliderTabLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}
