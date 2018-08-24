@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "YLSliderTabbarProtocol.h"
 
+
+/**
+ 滑块样式
+
+ - YLSliderTabbarTrackTypeRound: 椭圆背景
+ - YLSliderTabbarTrackTypeUnderLine: 底部横线
+ - YLSliderTabbarTrackTypeBackground: 全覆盖背景色
+ */
 typedef NS_ENUM(NSInteger,YLSliderTabbarTrackType) {
     YLSliderTabbarTrackTypeRound,
     YLSliderTabbarTrackTypeUnderLine,
+    YLSliderTabbarTrackTypeBackground,
 };
 
 

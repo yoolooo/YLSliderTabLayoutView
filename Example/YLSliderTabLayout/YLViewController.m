@@ -31,7 +31,7 @@
     sliderView.tabItemSelectedColor = [UIColor orangeColor];
     sliderView.tabItemNormalFontSize = 17;
     sliderView.tabItemSelectedFontSize = 20;
-    sliderView.trackType = YLSliderTabbarTrackTypeRound;
+    sliderView.trackType = YLSliderTabbarTrackTypeUnderLine;
     sliderView.trackColor = [UIColor purpleColor];
     NSMutableArray *items = [NSMutableArray array];
     for (int i = 0; i<15; i++) {

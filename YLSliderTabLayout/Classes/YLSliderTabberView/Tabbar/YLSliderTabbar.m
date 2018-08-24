@@ -69,8 +69,7 @@
     }else if (self.trackType == YLSliderTabbarTrackTypeRound){
         _trackView.frame = CGRectMake(-8, (self.bounds.size.height-kTrackViewHeight)/2, 0, kTrackViewHeight);
         _trackView.layer.cornerRadius = kTrackViewHeight/2.0;
-    }
-    else{
+    }else if (self.trackType == YLSliderTabbarTrackTypeBackground){
         _trackView.frame = CGRectMake(0, 0, 0, self.bounds.size.height);
         _trackView.layer.cornerRadius = 0;
     }
@@ -168,36 +167,57 @@
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent{
     UILabel *fromLabel = (UILabel*)[_scrollView viewWithTag:kLabelTagBase+fromIndex];
     fromLabel.textColor = [YLSliderTabbar getColorOfPercent:percent between:self.tabItemNormalColor and:self.tabItemSelectedColor];
-    UILabel *toLabel = nil;
-    if (toIndex >= 0 && toIndex < [self tabbarCount]) {
-        toLabel = (UILabel*)[_scrollView viewWithTag:kLabelTagBase + toIndex];
-        toLabel.textColor = [YLSliderTabbar getColorOfPercent:percent between:self.tabItemSelectedColor and:self.tabItemNormalColor];
-    }
-    CGRect fromRc = [_scrollView convertRect:fromLabel.bounds fromView:fromLabel];
-    CGFloat fromWidth = fromLabel.frame.size.width;
-    CGFloat fromX = fromRc.origin.x;
     
-    CGFloat toX;
-    CGFloat toWidth;
-    if (toLabel) {
-        CGRect toRc = [_scrollView convertRect:toLabel.bounds fromView:toLabel];
-        toWidth = toRc.size.width;
-        toX = toRc.origin.x;
+    CGFloat trackX;
+    CGFloat trackWidth;
+    if (self.trackType == YLSliderTabbarTrackTypeBackground){
+        UIView *fromBackView = [_scrollView viewWithTag:kViewTagBase + fromIndex];
+        CGFloat fromWidth = CGRectGetWidth(fromBackView.bounds);
+        CGFloat fromX = CGRectGetMinX(fromBackView.frame);
+        CGFloat toWidth = 0.0f;
+        CGFloat toX = 0.0f;
+        if (toIndex >= 0 && toIndex < [self tabbarCount]) {
+            UIView *toBackView = [_scrollView viewWithTag:kViewTagBase + toIndex];
+            if (toBackView) {
+                toWidth = CGRectGetWidth(toBackView.bounds);
+                toX = CGRectGetMinX(toBackView.frame);
+            }
+        }
+        trackX = fromX + (toX - fromX) * percent;
+        trackWidth = fromWidth * (1-percent) + toWidth * percent;
     }else{
-        toWidth = fromWidth;
-        if (toIndex > fromIndex) {
-            toX = fromX + fromWidth;
+        UILabel *toLabel = nil;
+        if (toIndex >= 0 && toIndex < [self tabbarCount]) {
+            toLabel = (UILabel*)[_scrollView viewWithTag:kLabelTagBase + toIndex];
+            toLabel.textColor = [YLSliderTabbar getColorOfPercent:percent between:self.tabItemSelectedColor and:self.tabItemNormalColor];
+        }
+        CGRect fromRc = [_scrollView convertRect:fromLabel.bounds fromView:fromLabel];
+        CGFloat fromWidth = fromLabel.frame.size.width;
+        CGFloat fromX = fromRc.origin.x;
+        
+        CGFloat toX;
+        CGFloat toWidth;
+        if (toLabel) {
+            CGRect toRc = [_scrollView convertRect:toLabel.bounds fromView:toLabel];
+            toWidth = toRc.size.width;
+            toX = toRc.origin.x;
         }else{
-            toX = fromX - fromWidth;
+            toWidth = fromWidth;
+            if (toIndex > fromIndex) {
+                toX = fromX + fromWidth;
+            }else{
+                toX = fromX - fromWidth;
+            }
+        }
+        trackWidth = toWidth * percent + fromWidth*(1-percent);
+        trackX = fromX + (toX - fromX)*percent;
+        if (self.trackType == YLSliderTabbarTrackTypeRound) {
+            trackWidth += 16;
+            trackX -= 8;
         }
     }
-    CGFloat width = toWidth * percent + fromWidth*(1-percent);
-    CGFloat x = fromX + (toX - fromX)*percent;
-    if (self.trackType == YLSliderTabbarTrackTypeRound) {
-        width += 16;
-        x -= 8;
-    }
-    _trackView.frame = CGRectMake(x, _trackView.frame.origin.y, width, CGRectGetHeight(_trackView.bounds));
+
+    _trackView.frame = CGRectMake(trackX, _trackView.frame.origin.y, trackWidth, CGRectGetHeight(_trackView.bounds));
 }
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex{
@@ -209,6 +229,7 @@
         fromLabel.textColor = self.tabItemNormalColor;
         fromLabel.font = [UIFont systemFontOfSize:self.tabItemNormalFontSize];
     }
+    
     if (selectedIndex >= 0 && selectedIndex < [self tabbarCount]) {
         UILabel *toLabel = (UILabel *)[_scrollView viewWithTag:kLabelTagBase+selectedIndex];
         toLabel.font = [UIFont systemFontOfSize:self.tabItemSelectedFontSize?self.tabItemSelectedFontSize:self.tabItemNormalFontSize];
@@ -227,6 +248,10 @@
         if (self.trackType == YLSliderTabbarTrackTypeRound) {
             width  += 16;
             x -= 8;
+        }else if (self.trackType == YLSliderTabbarTrackTypeBackground){
+            UIView *toBackView = [_scrollView viewWithTag:kViewTagBase + selectedIndex];
+            width = CGRectGetWidth(toBackView.bounds);
+            x = CGRectGetMinX(toBackView.frame);
         }
         
         _trackView.frame = CGRectMake(x, _trackView.frame.origin.y, width, CGRectGetHeight(_trackView.bounds));
