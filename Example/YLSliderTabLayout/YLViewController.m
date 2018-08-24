@@ -7,9 +7,7 @@
 //
 
 #import "YLViewController.h"
-#import "YLSliderTabbar.h"
-#import "YLCache.h"
-#import "YLSliderTabLayoutView.h"
+#import "YLSliderTabLayout.h"
 #import "ContentViewController.h"
 
 @interface YLViewController ()
@@ -44,13 +42,8 @@
     
     sliderView.tabbarItems = items;
     
-    YLSliderTabLayoutView *slider = [[YLSliderTabLayoutView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
-    slider.baseViewController = self;
-    slider.cache = [[YLCache alloc] initWithCount:5];
-    slider.delegate = self;
+    YLSliderTabLayoutView *slider = [[YLSliderTabLayoutView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64) tabbar:sliderView tabbarBottomSpacing:0 baseViewController:self cache:[[YLCache alloc] initWithCount:5] delegate:self];
     slider.selectedIndex = 0;
-    slider.tabbar = sliderView;
-    [slider setup];
     [self.view addSubview:slider];
     
 }

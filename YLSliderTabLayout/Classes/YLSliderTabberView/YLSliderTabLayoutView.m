@@ -39,6 +39,19 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame tabbar:(UIView<YLSliderTabbarProtocol>*)tabbar tabbarBottomSpacing:(CGFloat)tabbarBottomSpacing baseViewController:(UIViewController *)baseViewController cache:(id<YLCacheProtocol>)cache delegate:(id<YLSliderTabLayoutViewDelegate>)delegate{
+    if (self = [super initWithFrame:frame]) {
+        [self initDefaultConfigure];
+        self.tabbar = tabbar;
+        self.tabbarBottomSpacing = tabbarBottomSpacing;
+        self.baseViewController = baseViewController;
+        self.cache = cache;
+        self.delegate = delegate;
+        [self setup];
+    }
+    return self;
+}
+
 - (void)setup{
     self.tabbar.delegate = self;
     [self addSubview:self.tabbar];

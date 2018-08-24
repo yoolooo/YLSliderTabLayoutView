@@ -32,6 +32,6 @@
 @property (nonatomic, assign)   NSInteger selectedIndex;
 @property (nonatomic, weak)     id<YLSliderTabLayoutViewDelegate> delegate;
 
-- (void)setup;
+- (instancetype)initWithFrame:(CGRect)frame tabbar:(UIView<YLSliderTabbarProtocol>*)tabbar tabbarBottomSpacing:(CGFloat)tabbarBottomSpacing baseViewController:(UIViewController *)baseViewController cache:(id<YLCacheProtocol>)cache delegate:(id<YLSliderTabLayoutViewDelegate>)delegate;
 
 @end

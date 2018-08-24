@@ -58,6 +58,7 @@
 		2C4F22EB212E994400F89D76 /* YLSliderTabLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLSliderTabLayoutView.h; sourceTree = "<group>"; };
 		2C4F22F0212E997100F89D76 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		2C4F22F1212E997200F89D76 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		2C4F22F3212FCFDE00F89D76 /* YLSliderTabLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLSliderTabLayout.h; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* YLSliderTabLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLSliderTabLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +116,7 @@
 		2C4F22DE212E994400F89D76 /* YLSliderTabberView */ = {
 			isa = PBXGroup;
 			children = (
+				2C4F22F3212FCFDE00F89D76 /* YLSliderTabLayout.h */,
 				2C4F22EB212E994400F89D76 /* YLSliderTabLayoutView.h */,
 				2C4F22E3212E994400F89D76 /* YLSliderTabLayoutView.m */,
 				2C4F22DF212E994400F89D76 /* Cache */,
