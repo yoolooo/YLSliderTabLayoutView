@@ -46,7 +46,6 @@
     _sliderView.dataSource = self;
     _sliderView.delegate = self;
     _sliderView.baseViewController = self.baseViewController;
-    _sliderView.selectedIndex = self.selectedIndex;
     [self addSubview:_sliderView];
 }
 
