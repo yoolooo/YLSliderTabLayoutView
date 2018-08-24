@@ -37,5 +37,8 @@
     self.label.center = self.view.center;
 }
 
+- (void)dealloc{
+    NSLog(@"dealloc--%@",self);
+}
 
 @end

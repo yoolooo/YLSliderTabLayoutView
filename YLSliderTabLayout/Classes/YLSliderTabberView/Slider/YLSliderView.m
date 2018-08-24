@@ -202,7 +202,6 @@
     if (_oldIndex < 0) {
         return;
     }
-    
     CGPoint point = [pan translationInView:self];
     if (pan.state == UIGestureRecognizerStateBegan) {
         _panStartPoint = point;
@@ -214,12 +213,6 @@
             panToIndex = _oldIndex - 1;
         }else if (offsetX < 0 ){
             panToIndex = _oldIndex + 1;
-        }
-        
-        if (panToIndex != _panToIndex) {
-            if (_willController) {
-                [self removeWill];
-            }
         }
         
         if (panToIndex < 0 || panToIndex >= [self.dataSource numberOfControllersInSliderView:self]) {
