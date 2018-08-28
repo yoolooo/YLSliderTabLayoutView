@@ -64,7 +64,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.tabbar.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.tabbar.bounds));
+    self.tabbar.frame = CGRectMake(0, 0, CGRectGetWidth(self.tabbar.frame), CGRectGetHeight(self.tabbar.bounds));
     _sliderView.frame = CGRectMake(0, CGRectGetMaxY(self.tabbar.frame)+self.tabbarBottomSpacing, self.bounds.size.width, self.bounds.size.height - CGRectGetHeight(self.tabbar.bounds)-self.tabbarBottomSpacing);
 }
 
