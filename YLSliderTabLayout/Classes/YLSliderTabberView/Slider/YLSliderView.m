@@ -29,8 +29,6 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self initDefaultConfigure];
-        
-        self.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }
