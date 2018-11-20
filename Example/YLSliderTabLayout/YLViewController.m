@@ -26,25 +26,26 @@
 - (void)initView{
     
     YLSliderTabbar *sliderView = [[YLSliderTabbar alloc] initWithFrame:CGRectMake(0, 88, self.view.bounds.size.width, 40)];
-    sliderView.backgroundColor = [UIColor redColor];
+    sliderView.backgroundColor = [UIColor whiteColor];
     sliderView.tabItemNormalColor = [UIColor blackColor];
     sliderView.tabItemSelectedColor = [UIColor orangeColor];
     sliderView.tabItemNormalFontSize = 17;
     sliderView.tabItemSelectedFontSize = 20;
-    sliderView.trackType = YLSliderTabbarTrackTypeUnderLine;
+    sliderView.trackType = YLSliderTabbarTrackTypeRound;
     sliderView.trackColor = [UIColor purpleColor];
+    sliderView.tabItemSpace = 30;
     NSMutableArray *items = [NSMutableArray array];
     for (int i = 0; i<15; i++) {
         NSString *title = [NSString stringWithFormat:@"title %d",i];
-        YLTabbarItem *item = [YLTabbarItem itemWithTitle:title width:80];
+        YLTabbarItem *item = [YLTabbarItem itemWithTitle:title];
         [items addObject:item];
     }
     
     sliderView.tabbarItems = items;
     
     YLSliderTabLayoutView *slider = [[YLSliderTabLayoutView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64) tabbar:sliderView tabbarBottomSpacing:0 baseViewController:self cache:nil delegate:self];
-    slider.selectedIndex = 0;
     [self.view addSubview:slider];
+    slider.selectedIndex = 0;
     
 }
 

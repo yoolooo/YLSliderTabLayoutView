@@ -27,13 +27,10 @@ typedef NS_ENUM(NSInteger,YLSliderTabbarTrackType) {
 @interface YLTabbarItem : NSObject
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, assign) CGFloat width;
 
-+ (instancetype)itemWithTitle:(NSString *)title width:(CGFloat)width;
++ (instancetype)itemWithTitle:(NSString *)title;
 
 @end
-
-
 
 
 @interface YLSliderTabbar : UIView<YLSliderTabbarProtocol>
@@ -44,6 +41,7 @@ typedef NS_ENUM(NSInteger,YLSliderTabbarTrackType) {
 @property (nonatomic, strong) UIColor *tabItemSelectedColor;
 @property (nonatomic, assign) CGFloat tabItemNormalFontSize;
 @property (nonatomic, assign) CGFloat tabItemSelectedFontSize;
+@property (nonatomic, assign) CGFloat tabItemSpace;
 @property(nonatomic, strong) UIColor *trackColor;
 @property(nonatomic, strong) NSArray <YLTabbarItem*>*tabbarItems;
 

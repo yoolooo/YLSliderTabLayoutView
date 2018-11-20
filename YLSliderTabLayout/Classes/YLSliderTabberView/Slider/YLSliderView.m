@@ -37,13 +37,13 @@
     _oldIndex = -1;
     _isSwitching = NO;
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panHandler:)];
-    _pan.cancelsTouchesInView = NO;
+//    _pan.cancelsTouchesInView = NO;
     _pan.delegate = self;
     [self addGestureRecognizer:_pan];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
+    NSLog(@"----------%@",touch.view);
     if ([touch.view isKindOfClass:[UISlider class]]) {
         return NO;
     }else{
