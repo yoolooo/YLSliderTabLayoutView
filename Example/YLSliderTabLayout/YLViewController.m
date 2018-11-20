@@ -33,13 +33,20 @@
     sliderView.tabItemSelectedFontSize = 20;
     sliderView.trackType = YLSliderTabbarTrackTypeRound;
     sliderView.trackColor = [UIColor purpleColor];
-    sliderView.tabItemSpace = 30;
+    sliderView.edgeInsets = UIEdgeInsetsMake(0, 50, 0, 50);
     NSMutableArray *items = [NSMutableArray array];
-    for (int i = 0; i<15; i++) {
+    CGFloat width = 0;
+    for (int i = 0; i<3; i++) {
         NSString *title = [NSString stringWithFormat:@"title %d",i];
-        YLTabbarItem *item = [YLTabbarItem itemWithTitle:title];
+        
+        CGFloat itemWidth = [self sizeOfString:title font:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(CGFLOAT_MAX, 20)].width+8;
+        width+=itemWidth;
+        YLTabbarItem *item = [YLTabbarItem itemWithTitle:title width:itemWidth];
         [items addObject:item];
     }
+    
+    sliderView.tabItemSpace = (self.view.bounds.size.width-sliderView.edgeInsets.left-sliderView.edgeInsets.right-width)/2;
+    
     
     sliderView.tabbarItems = items;
     
@@ -51,7 +58,7 @@
 
 
 - (NSInteger)numberOfTabsInTabLayoutView:(YLSliderTabLayoutView *)tabLayoutView{
-    return 15;
+    return 3;
 }
 
 - (UIViewController *)ylSliderTabLayoutView:(YLSliderTabLayoutView *)tabLayoutView controllerAt:(NSInteger)index{
@@ -61,5 +68,14 @@
     return vc;
 }
 
+
+
+- (CGSize)sizeOfString:(NSString*)string font:(UIFont *)font constrainedToSize:(CGSize)size{
+    CGSize resultSize = [string boundingRectWithSize:size
+                                             options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                          attributes:@{NSFontAttributeName: font}
+                                             context:nil].size;
+    return resultSize;
+}
 
 @end

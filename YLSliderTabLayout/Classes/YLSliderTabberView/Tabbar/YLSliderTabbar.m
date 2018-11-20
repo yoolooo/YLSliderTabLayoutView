@@ -21,9 +21,10 @@
 @implementation YLTabbarItem
 
 
-+ (instancetype)itemWithTitle:(NSString *)title{
++ (instancetype)itemWithTitle:(NSString *)title width:(CGFloat)width{
     YLTabbarItem *item = [[YLTabbarItem alloc] init];
     item.title = title;
+    item.width = width;
     return item;
 }
 
@@ -81,6 +82,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         _selectedIndex = -1;
+        self.edgeInsets = UIEdgeInsetsMake(0, 16, 0, 16);
         [self initView];
     }
     return self;
@@ -133,20 +135,10 @@
     _tabItemNormalColor = tabItemNormalColor;
     
     [_collectionView reloadData];
-//    for (int i=0; i<[self tabbarCount]; i++) {
-//        if (i == self.selectedIndex) {
-//            continue;
-//        }
-//        UILabel *label = (UILabel *)[_scrollView viewWithTag:kLabelTagBase+i];
-//        label.textColor = tabItemNormalColor;
-//    }
 }
 
 - (void)setTabItemSelectedColor:(UIColor *)tabItemSelectedColor{
     _tabItemSelectedColor = tabItemSelectedColor;
-    
-//    UILabel *label = (UILabel *)[_scrollView viewWithTag:kLabelTagBase+self.selectedIndex];
-//    label.textColor = tabItemSelectedColor;
 }
 
 - (void)setTrackColor:(UIColor *)trackColor{
@@ -270,15 +262,6 @@
     return mid;
 }
 
-
-- (CGSize)sizeOfString:(NSString*)string font:(UIFont *)font constrainedToSize:(CGSize)size{
-    CGSize resultSize = [string boundingRectWithSize:size
-                                    options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-                                 attributes:@{NSFontAttributeName: font}
-                                    context:nil].size;
-    return resultSize;
-}
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -297,9 +280,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     YLTabbarItem *item = self.tabbarItems[indexPath.row];
-    NSString *title = item.title;
-    CGSize size = [self sizeOfString:title font:[UIFont systemFontOfSize:self.tabItemNormalFontSize] constrainedToSize:CGSizeMake(CGFLOAT_MAX, 20)];
-    return CGSizeMake(size.width+8, collectionView.bounds.size.height);
+    return CGSizeMake(item.width, collectionView.bounds.size.height);
+}
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return self.edgeInsets;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

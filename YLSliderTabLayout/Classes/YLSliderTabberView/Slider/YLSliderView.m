@@ -43,7 +43,6 @@
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    NSLog(@"----------%@",touch.view);
     if ([touch.view isKindOfClass:[UISlider class]]) {
         return NO;
     }else{
